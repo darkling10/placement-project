@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import classes from "./FormLogin.module.css";
 import { checkLogin, setItem } from "../../services/getList";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const FormLogin = () => {
+
+  const history = useNavigate()
+
   const [inputField, setInputField] = useState({
     email: "",
 
@@ -35,7 +39,7 @@ const FormLogin = () => {
        console.log(response.message)
        if(response.data.token){
           localStorage.setItem('token',response.data.token)
-          window.location.href = '/dashboard'
+          history("/dashboard", { replace: true });
        }else {
         alert("Check email and password")
        }

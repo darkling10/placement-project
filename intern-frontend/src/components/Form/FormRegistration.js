@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import classes from "./FormRegistration.module.css";
 import { setItem } from "../../services/getList";
+import {useNavigate} from 'react-router-dom'
 import axios from "axios";
 
 const FormLogin = () => {
@@ -12,7 +13,7 @@ const FormLogin = () => {
     cpassword: "",
   });
 
-  
+  const history = useNavigate();
 
   const [errorField, setErrorField] = useState({
     nameErr: "",
@@ -41,7 +42,11 @@ const FormLogin = () => {
       
       try {
        const data = await setItem(user)
-       console.log(data)
+       if(data.message === "ok"){
+        console.log(data.token)
+        localStorage.setItem("token",data.token)
+        window.location.href = '/dashboard'
+       }
       } catch (e) {
         return e;
       }
