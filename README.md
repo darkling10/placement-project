@@ -30,5 +30,5 @@ npm start
 - CONNECTIONURL,
 - JWTSECRETKEY,
 
-Note:(To call the API, we have used the 8080 port in React)
+Note:To call the API, we have used the 8080 port in React
 
